@@ -10,4 +10,10 @@
     <string name="num_8">8</string>
     <string name="num_9">9</string>
     <string name="num_0">0</string>
+    <string name="punto">.</string>
+    <string name="div">/</string>
+    <string name="mult">x</string>
+    <string name="sumar">+</string>
+    <string name="restar">-</string>
+    <string name="igual">=</string>
 </resources>

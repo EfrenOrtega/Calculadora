@@ -8,11 +8,47 @@
 
     <TextView
         android:id="@+id/tv_valores"
-        android:layout_width="416dp"
-        android:layout_height="94dp"
+        android:layout_width="409dp"
+        android:layout_height="148dp"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:background="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_valores" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="353dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_valores">
+
+        <Button
+            android:id="@+id/AC"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginLeft="2dp"
+
+            android:layout_marginRight="3dp"
+            android:drawable="@drawable/ic_launcher_background"
+            android:text=""
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
+
+    </LinearLayout>
 
     <TableRow
         android:id="@+id/tableRow5"
@@ -24,33 +60,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableRow4">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|bottom"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text=""
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
+
+        <Button
             android:id="@+id/btn_0"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_cero"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_0"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            app:fabCustomSize="70dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_punto"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_punto"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/punto"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            app:fabCustomSize="70dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_calcular"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-
-            android:layout_margin="16dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/igual"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
     </TableRow>
 
     <TableRow
@@ -63,44 +119,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableRow3">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_uno"
-            app:fabCustomSize="70dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_1"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_2"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_dos"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_2"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            app:fabCustomSize="70dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_3"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_tres"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_3"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            app:fabCustomSize="70dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_sumar"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_suma"
-
-            app:fabCustomSize="70dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/sumar"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
     </TableRow>
 
     <TableRow
@@ -113,45 +178,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableRow2">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_4"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_cuatro"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_4"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            app:fabCustomSize="70dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_5"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_cinco"
 
-            app:fabCustomSize="70dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_5"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_6"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_seis"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_6"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            app:fabCustomSize="70dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_restar"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_restar"
-
-            app:fabCustomSize="70dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/restar"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
     </TableRow>
 
     <TableRow
@@ -164,109 +238,117 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableRow">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_7"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_siete"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_7"
 
-            app:fabCustomSize="70dp" />
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_8"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_ocho"
 
-            app:fabCustomSize="70dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_8"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_9"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_nueve"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/num_9"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            app:fabCustomSize="70dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_multiplicar"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_multiplicar"
-
-            app:fabCustomSize="70dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/mult"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow"
-        android:layout_width="fill_parent"
+        android:layout_width="408dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="423dp"
         android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_limpiar"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_c"
-            app:fabCustomSize="70dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="C"
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
+
+        <Button
             android:id="@+id/btn_parentesis_apertura"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp" />
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="("
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_parentesis_cierre"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text=")"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            android:layout_margin="16dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <Button
             android:id="@+id/btn_dividir"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_dividir"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@string/div"
+            android:textSize="20sp"
+            app:backgroundTint="#202020"
+            app:cornerRadius="60dp" />
 
-            app:fabCustomSize="70dp" />
     </TableRow>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="348dp"
-        android:layout_height="69dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_valores">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab8"
-            android:layout_width="35dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end|bottom"
-
-            android:layout_margin="16dp" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

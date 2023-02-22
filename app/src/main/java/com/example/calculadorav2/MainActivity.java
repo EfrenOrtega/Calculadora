@@ -4,41 +4,47 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Text;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FloatingActionButton btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_sumar, btn_restar, btn_multiplicar, btn_dividir, btn_punto, btn_parentesisApertura, btn_parentesisiCierre, btn_clear;
+    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_sumar, btn_restar, btn_multiplicar, btn_dividir, btn_punto, btn_parentesisApertura, btn_parentesisiCierre, btn_clear, btn_Calcular;
     private TextView tv_valores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+        btn_1 = (Button) findViewById(R.id.btn_1);
+        btn_2=(Button) findViewById(R.id.btn_2);
+        btn_3 = (Button) findViewById(R.id.btn_3);
+        btn_4=(Button) findViewById(R.id.btn_4);
+        btn_5 = (Button) findViewById(R.id.btn_5);
+        btn_6=(Button) findViewById(R.id.btn_6);
+        btn_7 = (Button) findViewById(R.id.btn_7);
+        btn_8=(Button) findViewById(R.id.btn_8);
+        btn_9=(Button) findViewById(R.id.btn_9);
+        btn_0=(Button) findViewById(R.id.btn_0);
 
-        btn_1 = (FloatingActionButton) findViewById(R.id.btn_1);
-        btn_2=(FloatingActionButton) findViewById(R.id.btn_2);
-        btn_3 = (FloatingActionButton) findViewById(R.id.btn_3);
-        btn_4=(FloatingActionButton) findViewById(R.id.btn_4);
-        btn_5 = (FloatingActionButton) findViewById(R.id.btn_5);
-        btn_6=(FloatingActionButton) findViewById(R.id.btn_6);
-        btn_7 = (FloatingActionButton) findViewById(R.id.btn_7);
-        btn_8=(FloatingActionButton) findViewById(R.id.btn_8);
-        btn_9=(FloatingActionButton) findViewById(R.id.btn_9);
-        btn_0=(FloatingActionButton) findViewById(R.id.btn_0);
-
-        btn_sumar=(FloatingActionButton) findViewById(R.id.btn_sumar);
-        btn_restar=(FloatingActionButton) findViewById(R.id.btn_restar);
-        btn_multiplicar=(FloatingActionButton) findViewById(R.id.btn_multiplicar);
-        btn_dividir=(FloatingActionButton) findViewById(R.id.btn_dividir);
-        btn_parentesisApertura=(FloatingActionButton) findViewById(R.id.btn_parentesis_apertura);
-        btn_parentesisiCierre=(FloatingActionButton) findViewById(R.id.btn_parentesis_cierre);
-        btn_punto=(FloatingActionButton) findViewById(R.id.btn_punto);
-        btn_clear = (FloatingActionButton) findViewById(R.id.btn_limpiar);
+        btn_sumar=(Button) findViewById(R.id.btn_sumar);
+        btn_restar=(Button) findViewById(R.id.btn_restar);
+        btn_multiplicar=(Button) findViewById(R.id.btn_multiplicar);
+        btn_dividir=(Button) findViewById(R.id.btn_dividir);
+        btn_parentesisApertura=(Button) findViewById(R.id.btn_parentesis_apertura);
+        btn_parentesisiCierre=(Button) findViewById(R.id.btn_parentesis_cierre);
+        btn_punto=(Button) findViewById(R.id.btn_punto);
+        btn_clear = (Button) findViewById(R.id.btn_limpiar);
+        btn_Calcular = (Button) findViewById(R.id.btn_calcular);
 
         tv_valores = (TextView) findViewById(R.id.tv_valores);
 
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_parentesisiCierre.setOnClickListener(this);
         btn_punto.setOnClickListener(this);
         btn_clear.setOnClickListener(this);
+        btn_Calcular.setOnClickListener(this);
 
     }
 
@@ -143,9 +150,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             case R.id.btn_calcular:
-                System.out.print(tv_valores.getText());
+
+                if(!validarExpresión()) return;
+                ManejoParentesis();
                 break;
         }
+    }
+
+    public boolean validarExpresión(){
+        //Antes de Calcular verifico que la expresión ingresada este correcta siguiendo el siguiente patron:
+        //( (parentesis*(num*.num*)parentesis*) (operador){0,1} (parentesis*(num*.num*)parentesis*){1,} )*
+        String regex = "^((\\()*([0-9]*(\\.){0,1}[0-9]*)(\\))*([\\+|\\-|\\*|\\/]){0,1}((\\()*[0-9]*(\\.){0,1}[0-9]{1,}(\\))*)){1,}$";
+        if(!Pattern.matches(regex, tv_valores.getText())){
+            Toast.makeText(this, "Verifique que su Expresión sea Correcta", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    public void ManejoParentesis(){
+        final String regex = "[\\(].{0,}([\\(].{0,}[\\)]).{0,}[\\)]";
+        final String string = "(3*(2+2))";
+
+        final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+        final Matcher matcher = pattern.matcher(string);
+
+        while (matcher.find()) {
+            System.out.println("Full match: " + matcher.group(0));
+
+            for (int i = 1; i <= matcher.groupCount(); i++) {
+                System.out.println("Group " + i + ": " + matcher.group(i));
+            }
+        }
+
     }
 
     public void visualizarOperación(){
