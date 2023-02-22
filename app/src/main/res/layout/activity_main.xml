@@ -278,7 +278,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AC">
+        app:layout_constraintTop_toBottomOf="@+id/btn_DEL">
 
         <Button
             android:id="@+id/btn_limpiar"
@@ -335,7 +335,7 @@
     </TableRow>
 
     <Button
-        android:id="@+id/AC"
+        android:id="@+id/btn_DEL"
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_gravity="end|bottom"

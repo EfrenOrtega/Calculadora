@@ -8,16 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.Text;
-
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_sumar, btn_restar, btn_multiplicar, btn_dividir, btn_potencia, btn_punto, btn_parentesisApertura, btn_parentesisiCierre, btn_clear, btn_Calcular;
+    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_sumar, btn_restar, btn_multiplicar, btn_dividir, btn_potencia, btn_punto, btn_parentesisApertura, btn_parentesisiCierre, btn_clear, btn_Calcular, btn_del;
     private TextView tv_valores;
     private Object Analizador;
 
@@ -47,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_punto=(Button) findViewById(R.id.btn_punto);
         btn_clear = (Button) findViewById(R.id.btn_limpiar);
         btn_Calcular = (Button) findViewById(R.id.btn_calcular);
+        btn_del = (Button) findViewById(R.id.btn_DEL);
 
         tv_valores = (TextView) findViewById(R.id.tv_valores);
 
@@ -73,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_punto.setOnClickListener(this);
         btn_clear.setOnClickListener(this);
         btn_Calcular.setOnClickListener(this);
+        btn_del.setOnClickListener(this);
 
     }
 
@@ -155,6 +152,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_valores.setText(null);
                 break;
 
+            case R.id.btn_DEL:
+
+                if (tv_valores.getText().length()>0){
+                    tv_valores.setText(tv_valores.getText().toString().substring(0, tv_valores.getText().length()-1));
+                }
+                break;
 
             case R.id.btn_calcular:
 
