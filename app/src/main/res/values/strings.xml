@@ -16,4 +16,5 @@
     <string name="sumar">+</string>
     <string name="restar">-</string>
     <string name="igual">=</string>
+    <string name="potencia">^</string>
 </resources>

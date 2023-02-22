@@ -17,8 +17,9 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_sumar, btn_restar, btn_multiplicar, btn_dividir, btn_punto, btn_parentesisApertura, btn_parentesisiCierre, btn_clear, btn_Calcular;
+    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_sumar, btn_restar, btn_multiplicar, btn_dividir, btn_potencia, btn_punto, btn_parentesisApertura, btn_parentesisiCierre, btn_clear, btn_Calcular;
     private TextView tv_valores;
+    private Object Analizador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_restar=(Button) findViewById(R.id.btn_restar);
         btn_multiplicar=(Button) findViewById(R.id.btn_multiplicar);
         btn_dividir=(Button) findViewById(R.id.btn_dividir);
+        btn_potencia = (Button) findViewById(R.id.btn_potencia);
         btn_parentesisApertura=(Button) findViewById(R.id.btn_parentesis_apertura);
         btn_parentesisiCierre=(Button) findViewById(R.id.btn_parentesis_cierre);
         btn_punto=(Button) findViewById(R.id.btn_punto);
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_restar.setOnClickListener(this);
         btn_dividir.setOnClickListener(this);
         btn_multiplicar.setOnClickListener(this);
+        btn_potencia.setOnClickListener(this);
 
         btn_parentesisApertura.setOnClickListener(this);
         btn_parentesisiCierre.setOnClickListener(this);
@@ -128,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_valores.setText(tv_valores.getText() + "/");
                 break;
 
+            case R.id.btn_potencia:
+                tv_valores.setText(tv_valores.getText() + "^");
+                break;
+
             case R.id.btn_multiplicar:
                 tv_valores.setText(tv_valores.getText() + "*");
                 break;
@@ -152,35 +159,69 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_calcular:
 
                 if(!validarExpresión()) return;
-                ManejoParentesis();
+
+                Analizador analizador = new Analizador();
+                analizador.setExpresion(tv_valores.getText().toString());
+                String resultado = Float.toString(analizador.evaluar());
+                tv_valores.setText(resultado);
                 break;
         }
     }
 
     public boolean validarExpresión(){
+
+        //Validar que no haiga parentesis vacios
+        String regex = "\\(\\)";
+        if(Pattern.matches(regex, tv_valores.getText())){
+            Toast.makeText(this, "Verifique que su Expresión sea Correcta -> ()", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(!this.EvaluarParentesis()){
+            Toast.makeText(this, "Verifique que su Expresión sea Correcta - Parentesís", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        String Expresion = tv_valores.getText().toString();
+        String NuevaExpresion = Expresion.replace("(", "").replace(")", "");
+
         //Antes de Calcular verifico que la expresión ingresada este correcta siguiendo el siguiente patron:
-        //( (parentesis*(num*.num*)parentesis*) (operador){0,1} (parentesis*(num*.num*)parentesis*){1,} )*
-        String regex = "^((\\()*([0-9]*(\\.){0,1}[0-9]*)(\\))*([\\+|\\-|\\*|\\/]){0,1}((\\()*[0-9]*(\\.){0,1}[0-9]{1,}(\\))*)){1,}$";
-        if(!Pattern.matches(regex, tv_valores.getText())){
+        //( (num{1,}(.num*)) (operador){0,1} ((num{1,}.num*)parentesis*){1,} )*
+        regex = "^((([0-9]{1,}(\\.[0-9]{1,}){0,1}))(([\\+|\\-|\\*|\\/|\\^]){1}(([0-9]{1,}(\\.[0-9]{1,}){0,1}))){0,}){1,}$";
+        if(!Pattern.matches(regex, NuevaExpresion)){
             Toast.makeText(this, "Verifique que su Expresión sea Correcta", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        regex = "^[0-9]{1,}(\\.[0-9]{1,}){0,1}$";
+        if(Pattern.matches(regex, NuevaExpresion)){
+            tv_valores.setText(NuevaExpresion);
+            return false;
+        }
+
         return true;
     }
 
-    public void ManejoParentesis(){
-        final String regex = "[\\(].{0,}([\\(].{0,}[\\)]).{0,}[\\)]";
-        final String string = "(3*(2+2))";
+    //Función la cual verifica que los parentesis esten abiertos y cerrados correctamente
+    public boolean EvaluarParentesis(){
 
-        final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
-        final Matcher matcher = pattern.matcher(string);
+        String Expresion  = tv_valores.getText().toString();
+        int numParentesisApertura = 0;
+        int numParentesisCierre = 0;
 
-        while (matcher.find()) {
-            System.out.println("Full match: " + matcher.group(0));
-
-            for (int i = 1; i <= matcher.groupCount(); i++) {
-                System.out.println("Group " + i + ": " + matcher.group(i));
+        for(int i=0; i<Expresion.length(); i++){
+            char caracterActual = Expresion.charAt(i);
+            if(caracterActual == '('){
+                numParentesisApertura++;
+            }else if(caracterActual == ')'){
+                numParentesisCierre++;
             }
+        }
+
+        if(numParentesisApertura == numParentesisCierre){
+            return true;
+        }else{
+            return false;
         }
 
     }
