@@ -8,47 +8,23 @@
 
     <TextView
         android:id="@+id/tv_valores"
-        android:layout_width="409dp"
-        android:layout_height="148dp"
+        android:layout_width="410dp"
+        android:layout_height="203dp"
         android:textSize="32dp"
+
         app:layout_constraintEnd_toEndOf="parent"
 
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
-        android:layout_height="3dp"
-        android:background="@android:color/black"
+        android:layout_height="1dp"
+        android:background="#202020"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_valores" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="353dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tableRow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_valores">
-
-        <Button
-            android:id="@+id/AC"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_gravity="end|bottom"
-            android:layout_marginLeft="2dp"
-
-            android:layout_marginRight="3dp"
-            android:drawable="@drawable/ic_launcher_background"
-            android:text=""
-            app:backgroundTint="#202020"
-            app:cornerRadius="60dp" />
-
-    </LinearLayout>
 
     <TableRow
         android:id="@+id/tableRow5"
@@ -68,6 +44,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text="@string/potencia"
+            android:textColor="#FFAA00"
             android:textSize="20sp"
             app:backgroundTint="#202020"
             app:cornerRadius="60dp" />
@@ -104,8 +81,9 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text="@string/igual"
+            android:textColor="#000"
             android:textSize="20sp"
-            app:backgroundTint="#202020"
+            app:backgroundTint="#FFAA00"
             app:cornerRadius="60dp" />
     </TableRow>
 
@@ -163,6 +141,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text="@string/sumar"
+            android:textColor="#FFAA00"
             android:textSize="20sp"
             app:backgroundTint="#202020"
             app:cornerRadius="60dp" />
@@ -223,6 +202,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text="@string/restar"
+            android:textColor="#FFAA00"
             android:textSize="20sp"
             app:backgroundTint="#202020"
             app:cornerRadius="60dp" />
@@ -284,6 +264,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text="@string/mult"
+            android:textColor="#FFAA00"
             android:textSize="20sp"
             app:backgroundTint="#202020"
             app:cornerRadius="60dp" />
@@ -291,14 +272,13 @@
 
     <TableRow
         android:id="@+id/tableRow"
-        android:layout_width="408dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="423dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AC">
 
         <Button
             android:id="@+id/btn_limpiar"
@@ -308,7 +288,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text="C"
-
+            android:textColor="#FF4F4F"
             android:textSize="20sp"
             app:backgroundTint="#202020"
             app:cornerRadius="60dp" />
@@ -321,6 +301,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text="("
+            android:textColor="#FFAA00"
             android:textSize="20sp"
             app:backgroundTint="#202020"
             app:cornerRadius="60dp" />
@@ -333,6 +314,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text=")"
+            android:textColor="#FFAA00"
             android:textSize="20sp"
             app:backgroundTint="#202020"
             app:cornerRadius="60dp" />
@@ -345,10 +327,28 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:text="@string/div"
+            android:textColor="#FFAA00"
             android:textSize="20sp"
             app:backgroundTint="#202020"
             app:cornerRadius="60dp" />
 
     </TableRow>
+
+    <Button
+        android:id="@+id/AC"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end|bottom"
+
+        android:drawable="@drawable/ic_launcher_background"
+        android:text="DEL"
+        android:textColor="#FFAA00"
+        android:textSize="8sp"
+        app:backgroundTint="#202020"
+        app:cornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

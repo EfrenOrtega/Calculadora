@@ -22,12 +22,12 @@ public class Analizador {
         for (int i=0; i< this.expresion.length(); i++){
             char caracterActual = this.expresion.charAt(i);
 
-            String operadoresDelimitadores = "[\\(|\\)|\\+|\\-|\\/|\\*|\\^]";
+            String operadoresDelimitadores = "[\\(|\\)|\\+|\\-|\\/|\\*|\\^|\\.]";
             if(Pattern.matches(operadoresDelimitadores, new Character(caracterActual).toString())){
 
                if(this.stackOperadores.size()!=0){
 
-                   String soloOperadores = "[\\+|\\-|\\/|\\*|\\^]";
+                   String soloOperadores = "[\\.|\\+|\\-|\\/|\\*|\\^]";
                    if(Pattern.matches(soloOperadores, this.stackOperadores.peek()) && Pattern.matches(soloOperadores, new Character(caracterActual).toString())){
                         if(this.evaluarJerarquía(new Character(caracterActual).toString())){
                             this.stackOperandos.push(this.operar());
@@ -40,7 +40,7 @@ public class Analizador {
                if(new Character(caracterActual).toString().equals(")")){
                    this.stackOperadores.pop();
 
-                   String soloOperadores = "^[\\+|\\-|\\/|\\*|\\^]$";
+                   String soloOperadores = "^[\\.|\\+|\\-|\\/|\\*|\\^]$";
                    if(Pattern.matches(soloOperadores, this.stackOperadores.peek())){
                         this.stackOperandos.push(this.operar());
                    }
@@ -77,11 +77,14 @@ public class Analizador {
         }
 
         if(this.stackOperadores.size() != 0){
-            for(int i=0; i<this.stackOperadores.size(); i++){
+
+            int size = this.stackOperadores.size();
+            for(int i=0; i<size; i++){
                 this.stackOperandos.push(this.operar());
             }
         }
 
+        System.out.println(this.stackOperandos.peek());
         return this.stackOperandos.peek();
     }
 
@@ -111,6 +114,9 @@ public class Analizador {
             case "^":
                 return 2;
 
+            case ".":
+                return 3;
+
             default:
                 return -1;
         }
@@ -121,8 +127,6 @@ public class Analizador {
         float operando2 = this.stackOperandos.pop();
         String operador = this.stackOperadores.pop();
         float operando1 = this.stackOperandos.pop();
-        System.out.println(this.stackOperandos);
-
 
         float result = 0;
 
@@ -146,6 +150,12 @@ public class Analizador {
             case "^":
                 result = (float) (Math.pow(operando1,operando2));
                 break;
+
+            case ".":
+                String operando_1_str = Integer.toString(Math.round(operando1));
+                String operando_2_str =Integer.toString(Math.round(operando2));
+                result = Float.parseFloat(operando_1_str + operador + operando_2_str);
+                System.out.println("Este caracter es punto " + result);
         }
 
         return result;
