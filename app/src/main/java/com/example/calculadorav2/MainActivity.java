@@ -137,6 +137,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_parentesis_apertura:
+                String exp = tv_valores.getText().toString();
+                if(exp.length() > 0){
+                    if(exp.charAt(exp.length() - 1) == ')' || new Character(exp.charAt(exp.length()-1)).toString().matches("^[0-9]$")){
+                        tv_valores.setText(tv_valores.getText() + "*(");
+                        break;
+                    }
+                }
                 tv_valores.setText(tv_valores.getText() + "(");
                 break;
 
@@ -145,6 +152,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_punto:
+                exp = tv_valores.getText().toString();
+                if(exp.length() > 0){
+                    if(exp.charAt(exp.length()-1) == '.') return;
+                }
+
                 tv_valores.setText(tv_valores.getText() + ".");
                 break;
 
@@ -173,36 +185,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean validarExpresión(){
 
-        //Validar que no haiga parentesis vacios
-        String regex = "\\(\\)";
-        if(Pattern.matches(regex, tv_valores.getText())){
-            Toast.makeText(this, "Verifique que su Expresión sea Correcta -> ()", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+        try {
+            String regex = "";
 
-        if(!this.EvaluarParentesis()){
-            Toast.makeText(this, "Verifique que su Expresión sea Correcta - Parentesís", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+            //Validar que no haiga parentesis vacios
+            regex = "\\(\\)";
+            if(Pattern.matches(regex, tv_valores.getText())) throw new Exception();
 
-        String Expresion = tv_valores.getText().toString();
-        String NuevaExpresion = Expresion.replace("(", "").replace(")", "");
+            if(!this.EvaluarParentesis()) throw new Exception("Error Desconocido");
 
-        //Antes de Calcular verifico que la expresión ingresada este correcta siguiendo el siguiente patron:
-        //( (num{1,}(.num*)) (operador){0,1} ((num{1,}.num*)parentesis*){1,} )*
-        regex = "^((([0-9]{1,}(\\.[0-9]{1,}){0,1}))(([\\+|\\-|\\*|\\/|\\^]){1}(([0-9]{1,}(\\.[0-9]{1,}){0,1}))){0,}){1,}$";
-        if(!Pattern.matches(regex, NuevaExpresion)){
+            String Expresion = tv_valores.getText().toString();
+            String NuevaExpresion = Expresion.replace("(", "").replace(")", "");
+
+            //Antes de Calcular verifico que la expresión ingresada este correcta siguiendo el siguiente patron:
+            //( (num{1,}(.num*)) (operador){0,1} ((num{1,}.num*)parentesis*){1,} )*
+            regex = "^((([0-9]{1,}(\\.[0-9]{1,}){0,1}))(([\\+|\\-|\\*|\\/|\\^]){1}(([0-9]{1,}(\\.[0-9]{1,}){0,1}))){0,}){1,}$";
+
+            if(!Pattern.matches(regex, NuevaExpresion)) throw new Exception();
+
+            regex = "^[0-9]{1,}(\\.[0-9]{1,}){0,1}$";
+            if(Pattern.matches(regex, NuevaExpresion)) throw new Exception();
+
+            return true;
+
+        }catch (Exception e){
             Toast.makeText(this, "Verifique que su Expresión sea Correcta", Toast.LENGTH_SHORT).show();
-            return false;
         }
 
-        regex = "^[0-9]{1,}(\\.[0-9]{1,}){0,1}$";
-        if(Pattern.matches(regex, NuevaExpresion)){
-            tv_valores.setText(NuevaExpresion);
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     //Función la cual verifica que los parentesis esten abiertos y cerrados correctamente
@@ -221,16 +231,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        if(numParentesisApertura == numParentesisCierre){
-            return true;
-        }else{
-            return false;
-        }
+        if(numParentesisApertura == numParentesisCierre) return true;
+
+        return false;
 
     }
-
-    public void visualizarOperación(){
-
-    }
-
 }
